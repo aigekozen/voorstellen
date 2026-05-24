@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilotvoorstel Sport & People x AI Gekozen</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --groen: #2d4a3e;
+    --groen-mid: #3d6b56;
+    --groen-zacht: #e8ede9;
+    --groen-pale: #f2f5f2;
+    --rood: #8B3A2A;
+    --oranje: #b87320;
+    --oranje-pale: #fff8f0;
+    --wit: #faf9f6;
+    --grijs: #f0ede6;
+    --tekst: #1a1a18;
+    --tekst-zacht: #5a5a52;
+    --lijn: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--wit);
+    color: var(--tekst);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .page { max-width: 860px; margin: 0 auto; }
+
+  .header {
+    background: var(--groen);
+    color: white;
+    padding: 56px 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.025);
+  }
+
+  .header-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 22px;
+  }
+
+  .header-aan {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 400;
+    color: white;
+    max-width: 560px;
+    position: relative;
+  }
+
+  .header-sub {
+    color: rgba(255,255,255,0.58);
+    font-size: 14.5px;
+    max-width: 500px;
+    line-height: 1.68;
+    margin-top: 16px;
+    position: relative;
+  }
+
+  .header-meta {
+    margin-top: 36px;
+    display: flex;
+    gap: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+  }
+
+  .meta-item .meta-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+
+  .meta-item .meta-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .sectie { padding: 48px 64px 0; }
+
+  .sectie-nummer {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--groen-mid);
+    margin-bottom: 6px;
+  }
+
+  .sectie h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 27px;
+    font-weight: 400;
+    color: var(--groen);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .sectie-intro {
+    color: var(--tekst-zacht);
+    font-size: 14px;
+    margin-bottom: 28px;
+    max-width: 620px;
+    line-height: 1.72;
+  }
+
+  .opening {
+    background: var(--groen);
+    color: white;
+    padding: 36px 64px;
+  }
+
+  .opening p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+  }
+
+  .opening p strong { color: white; font-weight: 600; }
+
+  .tabel {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .tabel thead tr { background: var(--groen); color: white; }
+
+  .tabel thead th {
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.4px;
+  }
+
+  .tabel tbody tr { border-bottom: 1px solid var(--lijn); }
+  .tabel tbody tr:nth-child(even) { background: var(--grijs); }
+
+  .tabel tbody td {
+    padding: 13px 20px;
+    color: var(--tekst);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  .tabel tbody td:first-child {
+    font-weight: 500;
+    color: var(--groen);
+    white-space: nowrap;
+    min-width: 200px;
+  }
+
+  .tabel tbody td.bedrag {
+    font-weight: 700;
+    color: var(--groen);
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .tabel-totaal { background: var(--groen) !important; }
+
+  .tabel-totaal td {
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 14px 20px !important;
+  }
+
+  .tabel-totaal td.bedrag { color: white !important; font-size: 15px !important; }
+
+  .tabel-noot { background: var(--groen-pale) !important; }
+
+  .tabel-noot td {
+    color: var(--tekst-zacht) !important;
+    font-size: 12.5px !important;
+    font-style: italic;
+  }
+
+  .tabel-noot td:first-child {
+    color: var(--groen-mid) !important;
+    font-style: normal;
+    font-weight: 600 !important;
+  }
+
+  .kpi-tabel {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .kpi-tabel thead tr { background: var(--groen); color: white; }
+
+  .kpi-tabel thead th {
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.4px;
+  }
+
+  .kpi-tabel tbody tr { border-bottom: 1px solid var(--lijn); }
+  .kpi-tabel tbody tr:nth-child(even) { background: var(--grijs); }
+
+  .kpi-tabel tbody td {
+    padding: 13px 20px;
+    color: var(--tekst);
+    vertical-align: top;
+    line-height: 1.55;
+    font-size: 13px;
+  }
+
+  .kpi-tabel tbody td:first-child { font-weight: 500; color: var(--groen); min-width: 200px; }
+
+  .kpi-tabel tbody td:nth-child(2) { font-weight: 600; }
+
+  .kpi-tabel tbody td:last-child {
+    font-size: 12px;
+    color: var(--tekst-zacht);
+  }
+
+  .badge-hard {
+    display: inline-block;
+    background: var(--groen-zacht);
+    color: var(--groen);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  .badge-zacht {
+    display: inline-block;
+    background: var(--oranje-pale);
+    color: var(--oranje);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .blok {
+    background: var(--grijs);
+    border-radius: 3px;
+    padding: 24px 26px;
+  }
+
+  .blok h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--groen);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .blok ul { list-style: none; padding: 0; }
+
+  .blok ul li {
+    font-size: 13px;
+    color: var(--tekst);
+    padding: 5px 0 5px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .blok ul li:last-child { border-bottom: none; }
+
+  .blok ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--groen-mid);
+    font-size: 10px;
+    top: 7px;
+  }
+
+  .kader-oranje {
+    background: var(--oranje-pale);
+    border-left: 4px solid var(--oranje);
+    padding: 28px 36px;
+    margin-top: 0;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .kader-oranje h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--oranje);
+    margin-bottom: 10px;
+  }
+
+  .kader-oranje p {
+    font-size: 13.5px;
+    color: #4a3a20;
+    line-height: 1.72;
+  }
+
+  .samenwerking {
+    background: var(--groen);
+    color: white;
+    padding: 36px 40px;
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+
+  .samenwerking h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .sw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .sw-kant h5 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 12px;
+  }
+
+  .sw-kant ul { list-style: none; padding: 0; }
+
+  .sw-kant ul li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.78);
+    padding: 5px 0 5px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .sw-kant ul li:last-child { border-bottom: none; }
+
+  .sw-kant ul li::before {
+    content: '·';
+    position: absolute;
+    left: 3px;
+    color: rgba(255,255,255,0.35);
+    font-size: 18px;
+    top: 0;
+  }
+
+  .scheiding {
+    height: 1px;
+    background: var(--lijn);
+    margin: 48px 64px 0;
+  }
+
+  .afsluiting {
+    background: var(--groen);
+    color: white;
+    padding: 44px 64px;
+    margin-top: 52px;
+  }
+
+  .afsluiting h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 14px;
+    line-height: 1.2;
+    max-width: 480px;
+  }
+
+  .afsluiting p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 28px;
+  }
+
+  .afsluiting-contact {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .afsluiting-contact strong {
+    display: block;
+    color: white;
+    font-size: 15px;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    margin-bottom: 3px;
+  }
+
+  @media print {
+    .header, .opening, .afsluiting { padding-left: 44px; padding-right: 44px; }
+    .sectie { padding: 36px 44px 0; }
+    .scheiding { margin-left: 44px; margin-right: 44px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">Pilotvoorstel — vertrouwelijk</div>
+    <div class="header-aan">Voor Mathe, eigenaar van Sport & People</div>
+    <h1>Pilotvoorstel Sport & People x AI Gekozen</h1>
+    <div class="header-sub">Een gezamenlijke bewijsfase van zes maanden. Sport & People brengt de alumni, het vertrouwen en het bereik. AI Gekozen brengt de aanpak, tooling, audits, begeleiding, rapportage en uitvoering.</div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <div class="meta-label">Aangeboden door</div>
+        <div class="meta-value">AI Gekozen — aigekozen.nl</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Startdatum</div>
+        <div class="meta-value">1 juni 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Looptijd pilot</div>
+        <div class="meta-value">6 maanden</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Max. alumni</div>
+        <div class="meta-value">20 deelnemers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPENING -->
+  <div class="opening">
+    <p>Het doel van deze pilot is helder: testen of een netwerk van actieve S&P-alumni beter zichtbaar kan worden in Google, ChatGPT, Gemini en AI-antwoorden, en of Sport & People daardoor sterker wordt gepositioneerd als opleider achter actieve fitness trainers in Nederland. <strong>Voor S&P is dit een kans om als eerste fitness trainer-opleider te testen of een AI- en Google-leesbaar alumni-netwerk structurele waarde oplevert. Voor AI Gekozen is dit de bewijsfase die nodig is om het model breder in de markt te zetten.</strong></p>
+  </div>
+
+  <!-- 1. NORMALE WAARDE -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 01</div>
+    <h2>Normale marktwaarde van de pilot</h2>
+    <div class="sectie-intro">Ter transparantie: dit is wat de geleverde diensten normaal zouden kosten. Gedurende de eerste 6 maanden brengt AI Gekozen geen kosten in rekening bij S&P of de deelnemende alumni. Dit overzicht dient als referentie, niet als factuur.</div>
+
+    <table class="tabel">
+      <thead>
+        <tr>
+          <th>Onderdeel</th>
+          <th>Berekening</th>
+          <th style="text-align:right;">Normale waarde</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Opzet 20 alumni</td>
+          <td>20 × €150</td>
+          <td class="bedrag">€3.000</td>
+        </tr>
+        <tr>
+          <td>Alumni-abonnement 6 maanden (basis)</td>
+          <td>20 × €49 × 6 maanden</td>
+          <td class="bedrag">€5.880</td>
+        </tr>
+        <tr>
+          <td style="color:var(--tekst-zacht); font-weight:400; font-size:12px;">Alumni-abonnement Pro (ter referentie)</td>
+          <td style="font-size:12px; color:var(--tekst-zacht);">20 × €79 × 6 maanden</td>
+          <td class="bedrag" style="font-size:12px; color:var(--tekst-zacht); font-weight:400;">€9.480</td>
+        </tr>
+        <tr>
+          <td>S&P-managementfee</td>
+          <td>6 × €350</td>
+          <td class="bedrag">€2.100</td>
+        </tr>
+        <tr class="tabel-totaal">
+          <td colspan="2"><strong>Totale normale waarde eerste 6 maanden (basis)</strong></td>
+          <td class="bedrag">€10.980 excl. btw</td>
+        </tr>
+        <tr class="tabel-noot">
+          <td>Pilotafspraak</td>
+          <td colspan="2">Gedurende de eerste 6 maanden brengt AI Gekozen geen kosten in rekening bij S&P of de deelnemende alumni. Na afloop van de pilot beslissen S&P en de alumni zelfstandig of zij het traject voortzetten tegen de reguliere tarieven.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 2. WAT S&P KRIJGT -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 02</div>
+    <h2>Wat Sport & People krijgt binnen deze pilot</h2>
+    <div class="sectie-intro">Alle onderstaande onderdelen worden door AI Gekozen verzorgd gedurende de zes maanden van de pilot.</div>
+
+    <table class="tabel">
+      <thead>
+        <tr>
+          <th>Onderdeel</th>
+          <th>Afspraak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Eerste alumni-groep</td>
+          <td>Start met maximaal 20 actieve S&P-alumni</td>
+        </tr>
+        <tr>
+          <td>Recruitment</td>
+          <td>Gezamenlijke benadering via S&P-kanalen en opvolging door AI Gekozen</td>
+        </tr>
+        <tr>
+          <td>Webinars</td>
+          <td>Maximaal 2 alumni-webinars om deelnemers te informeren en activeren</td>
+        </tr>
+        <tr>
+          <td>Kick-off moment</td>
+          <td>Online kick-off of dag op kantoor, indien gewenst</td>
+        </tr>
+        <tr>
+          <td>Quickscan / audit</td>
+          <td>Voor geïnteresseerde alumni als onderdeel van selectie en onboarding</td>
+        </tr>
+        <tr>
+          <td>Opzet per alumni</td>
+          <td>Check en optimalisatiestructuur voor GBP, lokale vindbaarheid en AI-ready profiel en landingspagina</td>
+        </tr>
+        <tr>
+          <td>Koppeling aan S&P</td>
+          <td>Iedere deelnemende alumni wordt inhoudelijk gekoppeld aan Sport & People als opleider</td>
+        </tr>
+        <tr>
+          <td>Maandelijkse voortgang</td>
+          <td>Maandelijkse update op deelnemers, status, learnings en zichtbaarheid</td>
+        </tr>
+        <tr>
+          <td>Proofpoints</td>
+          <td>Resultaten, screenshots, learnings, feedback en testimonials worden gedurende de pilot vastgelegd en gedeeld</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. BUITEN SCOPE -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 03</div>
+    <h2>Wat buiten scope valt</h2>
+    <div class="sectie-intro">Deze pilot gaat niet over het volledig beheren of verbouwen van de S&P-website. Onderstaande onderdelen vallen expliciet buiten de afspraak.</div>
+
+    <div class="grid-2">
+      <div class="blok">
+        <h4>Buiten scope</h4>
+        <ul>
+          <li>Websitebeheer van S&P</li>
+          <li>Technische aanpassingen door de websitebouwer</li>
+          <li>Bouw van een volledige alumni-connectiepagina op S&P.nl</li>
+          <li>Structureel contentbeheer voor S&P</li>
+          <li>Betaalde advertenties</li>
+          <li>Socialmediabeheer</li>
+          <li>CRM-inrichting</li>
+          <li>Onbeperkte audits, support of aanpassingen</li>
+          <li>Garantie op leads, omzet of directe klanten voor alumni</li>
+        </ul>
+      </div>
+      <div class="kader-oranje">
+        <h3>Verwachtingskader</h3>
+        <p>De verwachting is niet dat AI Gekozen alles rondom website, marketing en leadgeneratie oplost. De verwachting is dat samen een eerste alumni-netwerk wordt gebouwd en gemeten dat beter leesbaar en vindbaar wordt voor Google en AI-platformen. Met als doel een integraal netwerk op te bouwen tussen Sport & People, haar alumni en AI Gekozen, waarmee S&P een structurele voorsprong opbouwt op concurrenten als autoriteit binnen AI-zoekmachines zoals ChatGPT en Gemini.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. KPI'S -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 04</div>
+    <h2>Wanneer is de pilot succesvol?</h2>
+    <div class="sectie-intro">De KPI is niet dat chatbots binnen 6 maanden overal S&P noemen. De KPI is dat het netwerk staat, alumni aantoonbaar vindbaar zijn en er voldoende concreet bewijs is om onderbouwd te besluiten of opschaling zinvol is. Vier harde KPI's, meetbaar met screenshots. Twee streefpunten die richting geven aan de langetermijnwaarde.</div>
+
+    <table class="kpi-tabel">
+      <thead>
+        <tr>
+          <th>KPI</th>
+          <th>Succescriterium na 6 maanden</th>
+          <th>Hoe meten</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Local Maps vindbaarheid <span class="badge-hard">Hard</span></td>
+          <td>Minimaal 10 actieve alumni verschijnen in de lokale top 3 op minimaal één relevant keyword in hun stad (bijv. "fitness trainer [stad]")</td>
+          <td>Handmatige check of Localo per stad, vastgelegd als screenshot</td>
+        </tr>
+        <tr>
+          <td>Profielkwaliteit <span class="badge-hard">Hard</span></td>
+          <td>Minimaal 80% van de actieve alumni heeft een volledig ingevuld GBP met minimaal 5 foto's, een omschrijving en minimaal 3 reviews</td>
+          <td>Maandelijkse steekproef door AI Gekozen, gerapporteerd in voortgangsupdate</td>
+        </tr>
+        <tr>
+          <td>Review groei <span class="badge-hard">Hard</span></td>
+          <td>Actieve alumni hebben samen minimaal 60 nieuwe Google-reviews verzameld gedurende de pilot (gemiddeld 4 tot 6 per alumni)</td>
+          <td>Cumulatief bijgehouden per alumni in maandrapportage</td>
+        </tr>
+        <tr>
+          <td>Besluitwaarde <span class="badge-hard">Hard</span></td>
+          <td>Genoeg concrete data, screenshots en testimonials om een onderbouwde beslissing te nemen over opschaling na de pilot</td>
+          <td>Eindevaluatie na maand 6 met beide partijen</td>
+        </tr>
+        <tr>
+          <td>S&P als opleider vindbaar in AI <span class="badge-zacht">Streefpunt</span></td>
+          <td>Bij de zoekopdracht "fitness trainer opleiding Nederland" verschijnt S&P in de top 3 van Google of wordt S&P genoemd in een ChatGPT- of Gemini-antwoord</td>
+          <td>Maandelijkse handmatige snapshot, niet als harde grens maar als indicator van netwerkeffect</td>
+        </tr>
+        <tr>
+          <td>Geografische spreiding <span class="badge-zacht">Streefpunt</span></td>
+          <td>Actieve alumni zijn zichtbaar in minimaal 8 tot 10 verschillende steden of regio's</td>
+          <td>Overzicht per stad in maandrapportage</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5. KOSTEN NA PILOT -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 05</div>
+    <h2>Kosten na de pilot</h2>
+    <div class="sectie-intro">Na 6 maanden beslist S&P of het netwerk structureel wordt voortgezet. De deelnemende alumni kiezen zelfstandig of zij willen doorgaan en welk pakket bij hen past. Pas vanaf dat moment gelden de reguliere tarieven.</div>
+
+    <table class="tabel">
+      <thead>
+        <tr>
+          <th>Onderdeel na pilot</th>
+          <th style="text-align:right;">Kosten</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alumni-abonnement Basis</td>
+          <td class="bedrag">€49 per maand per alumni</td>
+        </tr>
+        <tr>
+          <td>Alumni-abonnement Pro</td>
+          <td class="bedrag">€79 per maand per alumni</td>
+        </tr>
+        <tr>
+          <td>Nieuwe alumni-opzet</td>
+          <td class="bedrag">€150 eenmalig per alumni</td>
+        </tr>
+        <tr>
+          <td>S&P-managementfee (tot 25 actieve alumni)</td>
+          <td class="bedrag">€350 per maand</td>
+        </tr>
+        <tr>
+          <td>Opschaling vanaf 26 alumni</td>
+          <td class="bedrag">Volgens staffel</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6. WAT AI GEKOZEN VRAAGT -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 06</div>
+    <h2>Wat AI Gekozen vraagt om de pilot goed op te zetten</h2>
+    <div class="sectie-intro">Om de pilot professioneel uit te voeren is een aantal praktische afspraken noodzakelijk. Geen vergoeding voor de geleverde diensten, wel dekking van de directe kosten die het uitvoeren van de pilot met zich meebrengt.</div>
+
+    <table class="tabel">
+      <thead>
+        <tr>
+          <th>Onderdeel</th>
+          <th>Afspraak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Werkplek</td>
+          <td>6 maanden gebruik van kantoor of flexplek bij S&P</td>
+        </tr>
+        <tr>
+          <td>Vergaderruimte</td>
+          <td>Gebruik voor webinars, intakes, voortgangsgesprekken en voorbereiding</td>
+        </tr>
+        <tr>
+          <td>Reiskosten</td>
+          <td>€0,43 per kilometer</td>
+        </tr>
+        <tr>
+          <td>AI-toolingbudget</td>
+          <td>€250 per maand gedurende 6 maanden (totaal €1.500)</td>
+        </tr>
+        <tr>
+          <td>Kick-off moment</td>
+          <td>Indien van toepassing verzorgt of opent S&P een professioneel kick-off moment voor deelnemers</td>
+        </tr>
+        <tr>
+          <td>Alumni-toegang</td>
+          <td>S&P levert lijst, segmentatie en warme introductie richting deelnemers</td>
+        </tr>
+        <tr>
+          <td>Communicatie</td>
+          <td>S&P helpt met alumni-mailing, reminders en legitimatie richting deelnemers</td>
+        </tr>
+        <tr>
+          <td>Testimonials</td>
+          <td>S&P helpt actief met verzamelen van testimonials, inclusief korte video-feedback waar mogelijk</td>
+        </tr>
+        <tr>
+          <td>Projectgebonden kosten</td>
+          <td>Aanvullende kosten die direct voortvloeien uit de uitvoering van de pilot, zoals het huren van een locatie voor een kick-off of een werksessie met alumni, worden altijd vooraf in overleg vastgelegd en vergoed door S&P</td>
+        </tr>
+        <tr>
+          <td>Facturatie externe projecten</td>
+          <td>Indien via andere routes klanten ontstaan, kan S&P tijdelijk als facturatiepartner optreden. Alleen per project vooraf apart vast te leggen</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 7. SAMENWERKING -->
+  <div class="sectie">
+    <div class="sectie-nummer">Onderdeel 07</div>
+    <h2>De samenwerking die ik voor ogen heb</h2>
+    <div class="sectie-intro">Kort samengevat: de opzet voor een succesvolle pilot waarbij beide partijen een helder en gelijkwaardig belang hebben.</div>
+
+    <div class="samenwerking">
+      <h4>Wat beide partijen inbrengen en ophalen</h4>
+      <div class="sw-grid">
+        <div class="sw-kant">
+          <h5>Sport & People brengt in</h5>
+          <ul>
+            <li>Alumni-database en toegang tot het netwerk van fitness trainers</li>
+            <li>Vertrouwen en legitimatie richting deelnemers</li>
+            <li>Actieve ondersteuning bij recruitment en communicatie</li>
+            <li>Werkplek, vergaderruimte en projectgebonden kosten</li>
+            <li>AI-toolingbudget van €250 per maand</li>
+          </ul>
+        </div>
+        <div class="sw-kant">
+          <h5>AI Gekozen brengt in</h5>
+          <ul>
+            <li>Volledige uitvoering: aanpak, tooling, audits, rapportage</li>
+            <li>Opzet en optimalisatie van 20 alumni-profielen</li>
+            <li>Koppeling van alumni aan S&P als opleider in het netwerk</li>
+            <li>Webinars, maandelijkse voortgangsrapportage en proofpoints</li>
+            <li>Pilotwaarde van €10.980 excl. btw zonder kosten voor S&P of alumni</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scheiding"></div>
+
+  <!-- AFSLUITING -->
+  <div class="afsluiting">
+    <h2>Een heldere afspraak, voor beide partijen.</h2>
+    <p>Dit voorstel legt vast wat er wordt geleverd, wat er wordt teruggevraagd en wanneer de pilot succesvol is. Na zes maanden ligt er voldoende bewijs om een onderbouwde beslissing te nemen over opschaling. Tot die tijd is de afspraak helder en voor beide partijen eerlijk.</p>
+    <div class="afsluiting-contact">
+      <strong>AI Gekozen</strong>
+      aigekozen.nl
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
